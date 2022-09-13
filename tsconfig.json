@@ -1,0 +1,26 @@
+{
+	"compilerOptions": {
+		"target": "esnext",//"es6",
+		"module": "esnext",//"commonjs",
+		"rootDir": "src",
+		"outDir": "dist",
+    "esModuleInterop": true,
+		"sourceMap": true,
+    "strict": true,
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+
+    "jsx": "react",
+    "allowJs": true,
+    "moduleResolution": "node"
+	},
+	"include": [
+		"src/**/*.ts",
+	],
+	"exclude": [
+		"node_modules",
+		".vscode"
+	]
+}
