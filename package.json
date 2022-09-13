@@ -6,7 +6,7 @@
   "scripts": {
     "build": "NODE_ENV=production BUILD_VERSION=`git rev-parse HEAD` BUILD_DATE=$(date +%s) webpack",
     "build:windows": "set NODE_ENV=production && set BUILD_VERSION=`git rev-parse HEAD` && set BUILD_DATE=$(date +%s)&& webpack",
-    "start": "webpack serve --port 4004",
+    "start": "webpack serve --port 4001",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "CozyWard",

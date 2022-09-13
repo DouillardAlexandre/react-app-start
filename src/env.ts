@@ -7,10 +7,10 @@ class Env{
 
 //Read environnement variable to override
 var env:any = new Env()
-Object.keys(env).forEach((item:any) => {
+/*Object.keys(env).forEach((item:any) => {
     if (process.env[item]){
       env[item] = process.env[item]
     }
-})
+})*/
 
 export default env

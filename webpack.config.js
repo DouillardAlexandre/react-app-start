@@ -1,6 +1,5 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-//const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const prod = process.env.NODE_ENV === 'production';
 
@@ -9,8 +8,8 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundlefile.js',
-    publicPath: '/public'
+    filename: 'bundlefile.js'
+    //publicPath: '/public'
   },
   /*resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -38,7 +37,6 @@ module.exports = {
       },*/
       {
         test: /\.css$/,
-        //use: [MiniCssExtractPlugin.loader, 'css-loader'],
         use: [
           {
             loader: 'style-loader',
@@ -57,12 +55,21 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
+	static: {
+      directory: path.join(__dirname, "public"),
+    },
+    compress: true,
+    hot: 'only',
+    open : true
+    //port: 4001,
   },
   devtool: 'source-map',
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html'
+      template: './public/index.html',
+      favicon: './public/favicon/favicon.ico',
+      manifest: './public/manifest.json',
+      filename: 'index.html',
     }),
-    //new MiniCssExtractPlugin()
   ]
 }

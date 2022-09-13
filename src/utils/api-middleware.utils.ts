@@ -4,7 +4,7 @@
  * Format { error } message by triggering a response 
  */
 
-import { instanceBackend, instanceUpload } from "../App";
+import { instanceRedis } from "../App";
 
 
 const apiMiddleware = () => (next:any) => (action:any) => {
@@ -25,21 +25,35 @@ const apiMiddleware = () => (next:any) => (action:any) => {
           url,
           method,
           [dataOrParams]: data
-        }).then(({ data }) => {
+        }).then((data:any) => {
           if (data.error){
             //toast(i18n.t("Api middleware error " + data.error ), { type : 'error' });
           }
           resolve(data); 
         })
-        .catch(error => { 
+        .catch((error:any) => { 
           if (error.response){
 
-            var code
-            if (error.response.status === 404) code = 'page not found'
-            else if (error.response.status === 403) code = 'auth expired'
-            else if (error.response.status >= 500) code = 'server error'
-            else if (error.response.status === 401) code = 'user unauthorized'
-            else code = error.response.data.error
+            var code: any = ""
+
+            switch(error.response.status){
+              case 401:
+                code = 'user unauthorized'
+              break
+              case 403:
+                code = 'auth expired'
+              break
+              case 404:
+                code = 'page not found'
+              break
+              case 500:
+                code = 'server error'
+              break
+              default:
+                code = error.response.data.error
+              break
+
+            }
             
             //toast(i18n.t("Api middleware error " + code, error.response.data.details), { type : 'error' });
             resolve({ error : code })
