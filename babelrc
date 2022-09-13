@@ -1,0 +1,14 @@
+//npm install @babel/core @babel/preset-env @babel/preset-react babel-loader
+
+{
+  "presets": [
+    "@babel/preset-env",
+	  "@babel/preset-react"
+    //"@babel/react"
+  ],
+  "env": {
+    "development": {
+      "plugins": ["@babel/plugin-transform-react-display-name"]
+    }
+  }
+}
