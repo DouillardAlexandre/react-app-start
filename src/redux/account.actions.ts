@@ -41,30 +41,27 @@ export const accountStatus = (status:string) => ({
 
 //API
 
-export const accountDestroy = (id:string) => ({
-  type : "API",
-  payload : {
-    method : "DELETE",
-    url : "/account/" + id
-  }
-})
 
 
-export const accountFetch = () => ({
-  type : "API",
-  payload : {
-    method : "GET",
-    url : "/accounts"
-  }
-})
-
-export const accountInsert = (account:Account) => ({
+export const accountSaveData = (key:string, value:string) => ({
   type : "API",
   payload : {
     method : "POST",
-    url : "/account",
+    url : "/react-save-data",
     data : {
-      account
+      key,
+      value
+    }
+  }
+})
+
+export const accountSearch = (key:string) => ({
+  type : "API",
+  payload : {
+    method : "POST",
+    url : "/react-search",
+    data : {
+      key
     }
   }
 })
